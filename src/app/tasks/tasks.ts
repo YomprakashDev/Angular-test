@@ -29,6 +29,10 @@ onAddTask(){
   this.isTaskAdding = true
 }
 
+onCloseDailog(){
+  this.isTaskAdding = false
+}
+
 onCompleteTasks(id:string){
   this.tasks = this.tasks.filter((task) => task.id !== id)
 }
