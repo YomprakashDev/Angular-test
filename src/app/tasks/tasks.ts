@@ -1,40 +1,47 @@
-import { Component,EventEmitter,Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Task } from "./task/task";
 import { dummyTasks } from '../dummy-tasks';
 import { NewTask } from './new-task/new-task';
-
+import { FormInterface } from './new-task/new-task-model';
+import { taskServices } from './tasks.services';
 @Component({
   selector: 'app-tasks',
-  imports: [Task,NewTask],
+  imports: [Task, NewTask],
   templateUrl: './tasks.html',
   styleUrl: './tasks.css'
 })
 
 export class Tasks {
 
-@Input() name?:string;
-@Input() userId?:string;
+  @Input() name?: string;
+  @Input() userId!: string;
 
-@Output() add = new EventEmitter();
+  @Output() add = new EventEmitter();
 
-isTaskAdding = false;
+  private tasksServices = new taskServices()
+  isTaskAdding = false;
 
-tasks = dummyTasks
+  tasks = dummyTasks
 
-get selectedUserTask(){
-  return this.tasks.filter((task) => task.userId === this.userId)
-}
+  get selectedUserTask() {
+    return this.tasksServices.getUserTask(this.userId);
+  }
 
-onAddTask(){
-  this.isTaskAdding = true
-}
+  onAddTask() {
+    this.isTaskAdding = true
+  }
 
-onCloseDailog(){
-  this.isTaskAdding = false
-}
+  onCloseDailog() {
+    this.isTaskAdding = false
+  }
 
-onCompleteTasks(id:string){
-  this.tasks = this.tasks.filter((task) => task.id !== id)
-}
+  onCompleteTasks(id: string) {
+
+  }
+  onAddFormTask() {
+
+    this.isTaskAdding = false
+
+  }
 
 }

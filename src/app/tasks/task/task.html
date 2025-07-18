@@ -1,10 +1,10 @@
 
 
-
+<app-card>
 <article>
     <h2>{{task.title}}</h2>
     <time>
-        Time {{task.dueDate}}
+         {{task.dueDate | date}}
     </time>
     <p>Summary :{{task.summary}}</p>
     <p class="actions">
@@ -12,3 +12,5 @@
     </p>
  
 </article>
+</app-card>
+
