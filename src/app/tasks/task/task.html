@@ -1,16 +1,17 @@
-
-
+<!-- Wrapper card component for task display -->
 <app-card>
-<article>
-    <h2>{{task.title}}</h2>
-    <time>
-         {{task.dueDate | date}}
-    </time>
-    <p>Summary :{{task.summary}}</p>
-    <p class="actions">
-   <button (click)="onCompleteTask()">Complte</button>
-    </p>
- 
-</article>
-</app-card>
+  <article>
+    <h2>{{ task.title }}</h2>
 
+    <!-- Task due date -->
+    <time>{{ task.dueDate | date }}</time>
+
+    <!-- Task description -->
+    <p>Summary: {{ task.summary }}</p>
+
+    <!-- Task action -->
+    <p class="actions">
+      <button (click)="onCompleteTask()">Complete</button>
+    </p>
+  </article>
+</app-card>

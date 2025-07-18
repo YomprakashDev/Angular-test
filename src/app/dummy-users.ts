@@ -1,8 +1,9 @@
+// Sample list of users
 export const DUMMY_USERS = [
   {
-    id: 'u1',
-    name: 'Jasmine Washington',
-    avatar: 'user-1.jpg',
+    id: 'u1', // Unique user ID
+    name: 'Jasmine Washington', // Full name
+    avatar: 'user-1.jpg', // Profile picture filename
   },
   {
     id: 'u2',

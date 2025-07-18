@@ -1,14 +1,24 @@
+<!-- Application Header -->
 <app-header></app-header>
 
+<!--  Main Content Area -->
 <main class="main">
+  <!-- User List -->
   <ul id="users">
-    @for (user of users; track user.id){
+    @for (user of users; track user.id) {
     <li>
-      <app-user [selected]="user.id === selectedUserId" (select)="onSelectUser($event)" [user]="user" />
+      <!-- 👤 User Component -->
+      <app-user
+        [user]="user"
+        [selected]="user.id === selectedUserId"
+        (select)="onSelectUser($event)"
+      />
     </li>
     }
   </ul>
-@if (selectedUser){
-  <app-tasks [name]="selectedUser.name" [userId]="selectedUser.id" />        }         
 
+  <!--  Tasks Section: Display only if a user is selected -->
+  @if (selectedUser) {
+  <app-tasks [name]="selectedUser.name" [userId]="selectedUser.id" />
+  }
 </main>

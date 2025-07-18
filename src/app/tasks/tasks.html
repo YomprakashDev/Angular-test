@@ -1,22 +1,28 @@
-
-@if(isTaskAdding){
-
-  <app-new-task (close)="onCloseDailog()" (add)="onAddFormTask($event)"></app-new-task>
+<!-- Conditional rendering: Show new task form -->
+@if (isTaskAdding) {
+  <app-new-task 
+    [userId]="userId" 
+    (close)="onCloseDailog()">
+  </app-new-task>
 }
 
+<!-- Tasks section for selected user -->
 <section id="tasks">
   <header>
     <h2>{{ name }} Tasks</h2>
+
+    <!-- Add Task button -->
     <menu>
       <button (click)="onAddTask()">Add Task</button>
     </menu>
   </header>
 
+  <!-- Render task list -->
   <ul>
-    @for (task of selectedUserTask; track task.id){
-    <li>
-      <app-task (complete)="onCompleteTasks($event)"  [task]="task" />
-    </li>
+    @for (task of selectedUserTask; track task.id) {
+      <li>
+        <app-task [task]="task" />
+      </li>
     }
   </ul>
 </section>

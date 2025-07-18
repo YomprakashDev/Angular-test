@@ -1,19 +1,23 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { TaskInterface } from './task.modle';
-import { Card } from "../../ui/card/card";
+import { Card } from '../../ui/card/card';
 import { DatePipe } from '@angular/common';
+import { TaskServices } from '../tasks.services';
+
 @Component({
   selector: 'app-task',
-  imports: [Card,DatePipe],
+  imports: [Card, DatePipe],
   templateUrl: './task.html',
   styleUrl: './task.css'
 })
 export class Task {
+  @Input() task!: TaskInterface; // Task to render (input from parent)
 
-  @Input() task!:TaskInterface;
-  @Output() complete = new EventEmitter<string>()
+  // Inject task service for completion logic
+  private tasksService = inject(TaskServices);
 
-  onCompleteTask(){
-    this.complete.emit(this.task.id)
+  // Trigger task completion
+  onCompleteTask() {
+    this.tasksService.onCompleteTask(this.task.id);
   }
 }

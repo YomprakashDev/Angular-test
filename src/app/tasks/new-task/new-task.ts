@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Output, signal } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { FormInterface } from './new-task-model';
+import { TaskServices } from '../tasks.services';
 
 @Component({
   selector: 'app-new-task',
@@ -9,22 +9,32 @@ import { FormInterface } from './new-task-model';
   styleUrl: './new-task.css'
 })
 export class NewTask {
+  @Input() userId!: string;                 // ID of the user creating the task
+  @Output() close = new EventEmitter<void>(); // Notify parent to close form
 
-  @Output() close = new EventEmitter<void>()
-  @Output() add = new EventEmitter<FormInterface>
-  enteredTitle = ''
-  enteredSummary = '' 
-  enteredDate = ''
-  onCancle(){
-    this.close.emit()
+  private tasksServices = inject(TaskServices);
+
+  // Form fields bound via ngModel
+  enteredTitle = '';
+  enteredSummary = '';
+  enteredDate = '';
+
+  // Cancel task creation
+  onCancle() {
+    this.close.emit();
   }
 
-  onSubmit(){
-    this.add.emit({
-      title:this.enteredTitle,
-      summary:this.enteredSummary,
-      date:this.enteredDate,
-    })
-    
+  // Add new task and close dialog
+  onSubmit() {
+    this.tasksServices.onAddTask(
+      {
+        title: this.enteredTitle,
+        summary: this.enteredSummary,
+        date: this.enteredDate
+      },
+      this.userId
+    );
+
+    this.close.emit();
   }
 }

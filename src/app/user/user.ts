@@ -1,5 +1,4 @@
-import { Component, computed, signal, Input, Output, EventEmitter } from '@angular/core';
-import { DUMMY_USERS } from '../dummy-users';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { UserType } from './user.model';
 import { Card } from "../ui/card/card";
 
