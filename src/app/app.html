@@ -7,7 +7,7 @@
   <ul id="users">
     @for (user of users; track user.id) {
     <li>
-      <!-- 👤 User Component -->
+      <!--User Component -->
       <app-user
         [user]="user"
         [selected]="user.id === selectedUserId"
@@ -17,7 +17,7 @@
     }
   </ul>
 
-  <!--  Tasks Section: Display only if a user is selected -->
+  <!-- Display only if a user is selected -->
   @if (selectedUser) {
   <app-tasks [name]="selectedUser.name" [userId]="selectedUser.id" />
   }

@@ -1,5 +1,5 @@
 // Angular core imports
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 
 // Application-specific imports
 import { HeaderComponent } from './header/header';
@@ -7,7 +7,7 @@ import { User } from './user/user';
 import { Tasks } from './tasks/tasks';
 import { DUMMY_USERS } from './dummy-users';
 
-// Main app component decorator
+// Main app component 
 @Component({
   selector: 'app-root',
   standalone: true,
